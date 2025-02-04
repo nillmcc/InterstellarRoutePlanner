@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=interstellarroute'
+      - 'POSTGRES_USER=devuser'
+      - 'POSTGRES_PASSWORD=password'
+    ports:
+      - '5432'
+#    volumes:
+#      - pgdata:/var/lib/postgresql/data
+
+  irp:
+    image: 'irp:latest'
+    ports:
+      - '8080:8080'
+    environment:
+      - POSTGRES_USER=devuser
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=interstellarroute
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/interstellarroute
+      - SPRING_DATASOURCE_USERNAME=devuser
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - postgres
+
+#volumes:
+#  pgdata:
