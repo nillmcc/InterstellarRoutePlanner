@@ -114,6 +114,9 @@ public class IRPServiceImpl implements IRPService {
                     Route continuedRoute = new Route( currentRoute, getGate( destinationGateId ).orElseThrow(), connections.get( connection ) );
                     return getNextGate( startGateId, connection, destinationGateId, continuedRoute, depth + 1 );
                 }
+                else {
+                    return Optional.empty();
+                }
             }
         }
         
