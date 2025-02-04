@@ -37,7 +37,7 @@ public class IRPController {
                                                @RequestParam(required = false) Integer passengers,
                                                @RequestParam(required = false) Integer parking) {
         if ( passengers == null ) {
-            passengers = 0;
+            passengers = 1;
         }
         else if ( passengers > 5 ) {
             throw new RuntimeException( "Too many passengers" );
